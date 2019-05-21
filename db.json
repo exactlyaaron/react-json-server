@@ -1,0 +1,14 @@
+{
+  "deals": [
+    {
+      "title": "New PLAYSTATION",
+      "new_price": 49.99,
+      "old_price": 99.99
+    },
+    {
+      "title": "Academy Sports Backpack",
+      "new_price": 9.98,
+      "old_price": 17.99
+    }
+  ]
+}

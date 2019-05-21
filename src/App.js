@@ -2,25 +2,40 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      deals: []
+    }
+  }
+
+  componentDidMount(){
+    let url = "http://localhost:3001/deals";
+    fetch(url)
+    .then(resp => resp.json())
+    .then(data => {
+      let deals = data.map((deal,index) => {
+        return (
+          <div key={index}>
+            <h3>{deal.title}</h3>
+            <p>OLD PRICE: {deal.old_price}</p>
+            <p>NEW PRICE: {deal.new_price}</p>
+          </div>
+        )
+      })
+      this.setState({deals: deals});
+    })
+  }
+
+  render(){
+    return (
+      <div className="App">
+        {this.state.deals}
+      </div>
+    )
+  }
 }
+
 
 export default App;
